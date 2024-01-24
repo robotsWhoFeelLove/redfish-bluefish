@@ -153,7 +153,7 @@ export default function DataBoard() {
       {!data && <Begin uploadHandler={uploadHandler} />}
       {data && (
         <>
-          <div className="flex w-screen  min-h-[450px] ">
+          <div className="flex w-screen max-h-[450px] min-h-[350px] ">
             <div className=" w-[80%] overflow-scroll">
               <table className="table table-pin-rows table-xs top-0">
                 <thead>
