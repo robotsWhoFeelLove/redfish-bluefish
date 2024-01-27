@@ -8,6 +8,8 @@ export default {
     extend: {
       colors: {
         red: "#e0484d",
+        info: "#60a5fa",
+        secondary: "#e0484d",
       },
     },
   },

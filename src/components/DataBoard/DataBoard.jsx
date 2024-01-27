@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
 import { aggregateThings, convertToArray, cloneThing, expandNested, getUniqueVals, filterDynamic } from "../functions";
-import { read, utils, writeFile } from "xlsx";
 import HeaderMenu from "./HeaderMenu";
 import TableBody from "../Utils/TableBody";
 import AggregateBoard from "../AggregationBoard/AggregateBoard";
 import { handleDownload } from "../Utils/Download";
 import logo from "../../assets/fishTwo.svg";
 import Begin from "../Begin/Begin";
-import NavBar from "./NavBar";
-import "./Navbar.css";
+
+import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
-export default function DataBoard() {
-  const [data, setData] = useState("");
+export default function DataBoard({ data, setData, groupedData, setGroupedData, uploadHandler, unfilteredData, setUnfilteredData }) {
+  // const [data, setData] = useState("");
   const [prevData, setPrevData] = useState([]);
   const [selectedItem, setSelectedItem] = useState("");
   const [filters, setFilters] = useState([]);
-  const [unfilteredData, setUnfilteredData] = useState();
+  // const [unfilteredData, setUnfilteredData] = useState();
   const ref = useDetectClickOutside({ onTriggered: () => setSelectedItem("") });
 
   function runFilters(filters) {
@@ -66,29 +65,6 @@ export default function DataBoard() {
     setUnfilteredData(newData);
     setData(newData);
   }
-
-  const uploadHandler = (event) => {
-    event.preventDefault();
-    const files = event.target.files;
-    console.log({ files });
-    if (files.length) {
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const wb = read(event.target.result);
-        const sheets = wb.SheetNames;
-
-        if (sheets.length) {
-          const rows = utils.sheet_to_json(wb.Sheets[sheets[0]]);
-          setUnfilteredData(rows);
-          setData(rows);
-          // setPrevData([cloneThing(rows)]);
-          console.log({ rows });
-        }
-      };
-      reader.readAsArrayBuffer(file);
-    }
-  };
 
   useEffect(() => {
     console.log({ prevData });
@@ -149,8 +125,6 @@ export default function DataBoard() {
 
   return (
     <>
-      {data && <NavBar data={data} prevData={prevData} handleUndo={handleUndo} />}
-      {!data && <Begin uploadHandler={uploadHandler} />}
       {data && (
         <>
           <div className="flex w-screen max-h-[450px] min-h-[350px] ">
@@ -190,6 +164,21 @@ export default function DataBoard() {
               </table>
             </div>
             <div className="min-w-[200px] w-1/5 min-h-[450px] right-0  p-1 gradient">
+              <div className="flex gap-2">
+                <button
+                  className="p-1 btn btn-ghost h-10 border bg-red bg-opacity-90 rounded text-white "
+                  onClick={() => {
+                    handleDownload(data);
+                  }}
+                >
+                  Download
+                </button>
+                {prevData.length > 0 && (
+                  <button className="p-1 h-10 bg-red bg-opacity-90 btn btn-ghost rounded text-white mt-6" onClick={() => handleUndo()}>
+                    Undo
+                  </button>
+                )}
+              </div>
               <div className="text-sm text-white text-bold">Smart Filters:</div>
               {!filters.length > 0 && (
                 <div className="p-4 hyphens-auto text-md ">Click on a header to add filters, convert data elements and expand values</div>
@@ -218,7 +207,7 @@ export default function DataBoard() {
           </div>
         </>
       )}
-      {data && <AggregateBoard data={data} />}
+      {data && <AggregateBoard groupedData={groupedData} setGroupedData={setGroupedData} data={data} />}
     </>
   );
 }

@@ -5,3 +5,8 @@ nav,
   background: linear-gradient(60deg, #075985 0%, #60a5fa 50%);
   color: white;
 }
+
+h1,
+h1 > span {
+  font-size: 25pt;
+}

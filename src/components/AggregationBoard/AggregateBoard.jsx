@@ -3,12 +3,12 @@ import { useState, useEffect } from "react";
 import { cloneThing, aggregateThings } from "../functions";
 import DropDown from "../Utils/DropDown";
 import { handleDownload } from "../Utils/Download";
-import "../DataBoard/Navbar.css";
+import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
-function AggregateBoard({ data, handleHeaderClick }) {
+function AggregateBoard({ data, handleHeaderClick, groupedData, setGroupedData }) {
   const [checkedGroups, setCheckedGroups] = useState([]);
-  const [groupedData, setGroupedData] = useState();
+
   const [aggregations, setAggregations] = useState([]);
   const [activeTab, setActiveTab] = useState("group");
   const [header, setHeader] = useState();
@@ -145,7 +145,7 @@ function AggregateBoard({ data, handleHeaderClick }) {
                 {/* <div className="text-sm text-slate-500 text-bold">Aggregation:</div> */}
                 <div className="flex mt-4 items-center ">
                   <div className="w-28 text-sm text-white text-bold">Field: </div>{" "}
-                  <DropDown ref={ref} actions={Object.keys(data[0])} width="200px" setter={setHeader} />
+                  <DropDown actions={Object.keys(data[0])} width="200px" setter={setHeader} />
                 </div>
                 <div className="flex mt-2 items-center ">
                   <div className="w-28 text-sm text-whitetext-bold">Aggregation: </div>{" "}
