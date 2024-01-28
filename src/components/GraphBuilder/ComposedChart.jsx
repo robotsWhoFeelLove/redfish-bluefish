@@ -8,12 +8,13 @@ function BarTypeChart({ dataSet, graphSettings, graphArr, layer, categoriesGap }
   //   useEffect(() => {
   //     setBarGap(graphSettings.categoriesGap);
   //   }, [graphSettings]);
+  console.log({ categoriesGap });
 
   return (
     <div id="graph" className="w-[800px] h-[600px] ">
       <div
         style={{ width: graphSettings.width + "%", height: graphSettings.height + "%", backgroundColor: graphSettings.bgColor }}
-        className="ml-[10%] h-[500px]  flex flex-col items-center justify-center "
+        className="h-[500px]  flex flex-col items-center justify-center "
       >
         <h3 style={{ color: graphSettings.titleColor }} className="text-2xl font-semibold mb-10 ">
           {graphSettings.chartName}
@@ -21,7 +22,7 @@ function BarTypeChart({ dataSet, graphSettings, graphArr, layer, categoriesGap }
         <ResponsiveContainer width="100%" height="75%">
           <ComposedChart
             barGap={4}
-            barCategoryGap={categoriesGap + "%"}
+            // barCategoryGap={categoriesGap / 5}
             width={500}
             height={400}
             data={dataSet}
@@ -40,7 +41,14 @@ function BarTypeChart({ dataSet, graphSettings, graphArr, layer, categoriesGap }
             {graphArr &&
               graphArr.map((graph, i) => {
                 if (graph.chartType === "Bar") {
-                  return <Bar key={"bar" + i} dataKey={graph.dataKey} fill={layer != "main" && layer != i ? "#00000000" : graph.fill} />;
+                  return (
+                    <Bar
+                      key={"bar" + i}
+                      maxBarSize={3000 / categoriesGap}
+                      dataKey={graph.dataKey}
+                      fill={layer != "main" && layer != i ? "#00000000" : graph.fill}
+                    />
+                  );
                 }
                 if (graph.chartType === "Line")
                   return (

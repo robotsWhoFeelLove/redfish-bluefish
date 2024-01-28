@@ -43,6 +43,7 @@ function GraphBuilder({ groupedData }) {
   const [activeTab, setActiveTab] = useState("main");
   const [graphIndex, setGraphIndex] = useState();
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [barCategoryGap, setBarCategoryGap] = useState(10);
 
   function handleNew(item) {
     console.log("new " + item);
@@ -88,7 +89,7 @@ function GraphBuilder({ groupedData }) {
   async function handleDownloadImage() {
     // const element = document.querySelector("#print");
     // console.log({ element });
-    toPng(document.getElementById("print")).then(function (dataUrl) {
+    toPng(document.getElementById("graph")).then(function (dataUrl) {
       download(dataUrl, graphSettings.chartName ? graphSettings.chartName : "redFishBlueFishChart" + ".png");
     });
     // const canvas = await html2canvas(element, { scale: 1 });
@@ -119,7 +120,7 @@ function GraphBuilder({ groupedData }) {
 
   return (
     <>
-      <div role="tablist" className="tabs tabs-lifted tabs-sm mt-1 bg-blue-50 w-80">
+      <div role="tablist" className="tabs tabs-lifted tabs-sm mt-1  bg-blue-50 w-80">
         <a
           role="tab"
           onClick={() => {
@@ -158,25 +159,29 @@ function GraphBuilder({ groupedData }) {
         <div onClick={() => handleNew("Line")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50">
           New Line
         </div>
+
         <div className="btn btn-ghost bg-blue-400 text-white gap-2 z-50">New Radar</div>
-      </div>
-      <div className="flex w-screen">
-        <div id="print" className="printObj h-screen w-3/4 mt-36">
-          {graphArr.length > 0 && (
-            <BarTypeChart
-              layer={activeTab}
-              graphSettings={graphSettings}
-              dataSet={groupedData}
-              categoriesGap={graphSettings.categoriesGap}
-              graphArr={graphArr}
-            />
-          )}
-        </div>
         {graphArr.length > 0 && (
-          <div onClick={handleDownloadImage} className="btn btn-ghost bg-blue-400">
+          <div onClick={handleDownloadImage} className="btn btn-ghost bg-red text-white">
             Download
           </div>
         )}
+      </div>
+      <div className="flex w-screen h-screen">
+        <div id="print" className="printObj w-4/5 flex justify-center">
+          <div className="flex justify-center min-h-content h-[600px] w-[90%]  bg-white pt-28 rounded-xl">
+            {graphArr.length > 0 && (
+              <BarTypeChart
+                layer={activeTab}
+                graphSettings={graphSettings}
+                dataSet={groupedData}
+                categoriesGap={barCategoryGap}
+                graphArr={graphArr}
+              />
+            )}
+          </div>
+        </div>
+
         <div className="flex flex-col z-50 w-1/3">
           {/* {prevCharts && prevCharts.length > 0 && (
             <div>
@@ -233,12 +238,12 @@ function GraphBuilder({ groupedData }) {
                   <input
                     type="range"
                     min={0}
-                    max={50}
-                    value={graphSettings.categoriesGap}
+                    max={40}
+                    value={barCategoryGap}
                     className="range range-info w-36"
-                    onChange={(e) => modifyGraph("categoriesGap", e.target.value)}
+                    onChange={(e) => setBarCategoryGap(e.target.value)}
                   />
-                  <div>{graphSettings.categoriesGap}</div>
+                  <div>{barCategoryGap}</div>
                 </div>
               </div>
 

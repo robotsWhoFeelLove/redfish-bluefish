@@ -58,7 +58,7 @@ function AggregateBoard({ data, handleHeaderClick, groupedData, setGroupedData }
   }
   return (
     <>
-      <div className="flex w-screen min-h-[400px] border-t-4 border-blue-200 bottom-0">
+      <div className="flex w-screen min-h-[100px] max-h-full border-t-4 border-blue-200 bottom-0">
         <div className="w-3/4 border-4 overflow-scroll">
           {groupedData && groupedData.length > 0 && (
             <div className="h-14 gradient flex justify-end">

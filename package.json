@@ -17,10 +17,13 @@
     "downloadjs": "^1.4.7",
     "html-to-image": "^1.11.11",
     "html2canvas": "^1.4.1",
+    "install": "^0.13.0",
+    "npm": "^10.4.0",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
     "react-detect-click-outside": "^1.1.7",
     "react-dom": "^18.2.0",
+    "react-resizable-panels": "^1.0.10",
     "recharts": "^2.10.4",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/xlsx-0.20.1.tgz"
   },

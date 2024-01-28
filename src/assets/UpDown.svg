@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="200mm"
+   viewBox="0 0 210 200"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   sodipodi:docname="UpDown.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.85025133"
+     inkscape:cx="219.34691"
+     inkscape:cy="384.59216"
+     inkscape:window-width="1312"
+     inkscape:window-height="661"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer2" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#333333;stroke-width:0.264583"
+       id="rect1"
+       width="6.6784887"
+       height="66.765434"
+       x="85.949654"
+       y="-29.263708"
+       ry="0"
+       transform="rotate(45)" />
+    <rect
+       style="fill:#333333;stroke-width:0.264583"
+       id="rect1-9"
+       width="6.6784887"
+       height="66.765434"
+       x="22.920931"
+       y="86.614281"
+       ry="0"
+       transform="rotate(-45)" />
+    <circle
+       style="fill:#333333;stroke-width:0.233486"
+       id="path2"
+       cx="36.299999"
+       cy="89.93"
+       inkscape:label="path2"
+       r="3.3" />
+    <circle
+       style="fill:#333333;stroke-width:0.233487"
+       id="path2-3"
+       cx="126.80917"
+       cy="89.663002"
+       inkscape:label="path2"
+       r="3.3" />
+  </g>
+  <rect
+     style="fill:#333333;stroke-width:0.264583"
+     id="rect1-8"
+     width="6.6784887"
+     height="66.765434"
+     x="-175.00919"
+     y="-59.551533"
+     ry="0"
+     transform="rotate(-135)" />
+  <rect
+     style="fill:#333333;stroke-width:0.264583"
+     id="rect1-9-7"
+     width="6.6784887"
+     height="66.765434"
+     x="53.208759"
+     y="-174.34457"
+     ry="0"
+     transform="rotate(135)" />
+  <circle
+     style="fill:#333333;stroke-width:0.233486"
+     id="path2-1"
+     cx="-126.80917"
+     cy="-116.0125"
+     inkscape:label="path2"
+     r="3.3"
+     transform="scale(-1)" />
+  <circle
+     style="fill:#333333;stroke-width:0.233487"
+     id="path2-3-9"
+     cx="-36.299999"
+     cy="-116.2795"
+     inkscape:label="path2"
+     r="3.3"
+     transform="scale(-1)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2" />
+</svg>
