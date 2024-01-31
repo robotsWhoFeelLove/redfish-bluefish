@@ -6,10 +6,10 @@ import { handleDownload } from "../Utils/Download";
 import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
-function AggregateBoard({ data, handleHeaderClick, groupedData, setGroupedData }) {
-  const [checkedGroups, setCheckedGroups] = useState([]);
+function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations, groupedData, setGroupedData, checkedGroups, setCheckedGroups }) {
+  // const [checkedGroups, setCheckedGroups] = useState([]);
 
-  const [aggregations, setAggregations] = useState([]);
+  // const [aggregations, setAggregations] = useState([]);
   const [activeTab, setActiveTab] = useState("group");
   const [header, setHeader] = useState();
   const [aggOp, setAggOp] = useState();

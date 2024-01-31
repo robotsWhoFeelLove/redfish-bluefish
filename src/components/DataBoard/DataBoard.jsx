@@ -129,116 +129,116 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
 
   return (
     <>
-      <PanelGroup style={{ height: "100vh" }} onLayout={setSizes} direction="vertical">
-        <Panel defaultSize={sizes[0]}>
-          {data && (
-            <>
-              <div className="flex w-screen max-h-full min-h-[150px]  px-2 backdrop">
-                <div className=" w-[80%] overflow-scroll bg-white py-2 rounded-lg">
-                  <table className="table table-pin-rows table-xs top-0 ">
-                    <thead>
-                      <tr className="text-blue-400 ">
-                        {data[0] &&
-                          Object.keys(data[0]).map((item) => {
-                            return (
-                              <th
-                                ref={ref}
-                                onClick={(event) => {
-                                  handleHeaderClick(item, event);
-                                }}
-                                className="hover:bg-blue-300 border-2   border-slate-300 bg-slate-500"
-                                key={"header" + item}
-                              >
-                                <div className=" text-white text-xl text-lato font-light">{item}</div>
-                                {selectedItem === item && (
-                                  <HeaderMenu
-                                    setFilters={setFilters}
-                                    data={data}
-                                    selectedItem={selectedItem}
-                                    item={item}
-                                    changeData={changeData}
-                                    handleHeaderClick={handleHeaderClick}
-                                  />
-                                )}
-                              </th>
-                            );
-                          })}
-                      </tr>
-                    </thead>
+      {/* <PanelGroup style={{ height: "100vh" }} onLayout={setSizes} direction="vertical">
+        <Panel defaultSize={sizes[0]}> */}
+      {data && (
+        <>
+          <div className="flex w-screen max-h-full min-h-[150px]  px-2 backdrop">
+            <div className=" w-[80%] overflow-scroll bg-white py-2 rounded-lg">
+              <table className="table table-pin-rows table-xs top-0 ">
+                <thead>
+                  <tr className="text-blue-400 ">
+                    {data[0] &&
+                      Object.keys(data[0]).map((item) => {
+                        return (
+                          <th
+                            ref={ref}
+                            onClick={(event) => {
+                              handleHeaderClick(item, event);
+                            }}
+                            className="hover:bg-blue-300 border-2   border-slate-300 bg-slate-500"
+                            key={"header" + item}
+                          >
+                            <div className=" text-white text-xl text-lato font-light">{item}</div>
+                            {selectedItem === item && (
+                              <HeaderMenu
+                                setFilters={setFilters}
+                                data={data}
+                                selectedItem={selectedItem}
+                                item={item}
+                                changeData={changeData}
+                                handleHeaderClick={handleHeaderClick}
+                              />
+                            )}
+                          </th>
+                        );
+                      })}
+                  </tr>
+                </thead>
 
-                    <TableBody data={data} />
-                  </table>
-                </div>
-                <div className="min-w-[200px] w-1/5 min-h-[450px] right-0  p-1 bg-white border-l-blue-300 border-l-4">
-                  <div className="flex gap-2">
-                    <button
-                      className="p-1 btn btn-ghost h-10 border bg-red bg-opacity-90 rounded text-white "
-                      onClick={() => {
-                        handleDownload(data);
-                      }}
-                    >
-                      Download
-                    </button>
-                    {prevData.length > 0 && (
-                      <button className="p-1 h-10 bg-red bg-opacity-90 btn btn-ghost rounded text-white mt-6" onClick={() => handleUndo()}>
-                        Undo
-                      </button>
-                    )}
-                  </div>
-
-                  {!filters.length > 0 && (
-                    <div className="p-4 hyphens-auto text-md ">Click on a header to add filters, convert data elements and expand values</div>
-                  )}
-                  {filters.map((filter, i) => {
-                    return (
-                      <>
-                        <table className="flex table flex-col my-1" key={"filter" + i}>
-                          <thead>
-                            <tr>
-                              <th>Smart Filters:</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>
-                                <button className="self-end bg-red bg-opacity-90 px-1  text-white rounded border" onClick={() => clearFilter(filter)}>
-                                  Clear
-                                </button>
-                                {
-                                  <div className="flex justify-between p-1 items-center rounded border border-blue-300  ">
-                                    <span className="text-md border text-slate-800 border-red bg-white rounded px-1">
-                                      {Array.isArray(filter.field) ? filter.field[0] : filter.field}
-                                    </span>
-                                    <div className="font-bold text-red">{" | "}</div>
-                                    <span>{Array.isArray(filter.field) ? "in" : filter.operation}</span>
-                                    <div className="font-bold text-red">{" | "}</div>
-                                    <span className="text-sm rounded border border-red">
-                                      {Array.isArray(filter.value) ? filter.value.join(", ") : filter.value}
-                                    </span>
-                                  </div>
-                                }
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </>
-                    );
-                  })}
-                </div>
+                <TableBody data={data} />
+              </table>
+            </div>
+            <div className="min-w-[200px] w-1/5 min-h-[450px] right-0  p-1 bg-white border-l-blue-300 border-l-4">
+              <div className="flex gap-2">
+                <button
+                  className="p-1 btn btn-ghost h-10 border bg-red bg-opacity-90 rounded text-white "
+                  onClick={() => {
+                    handleDownload(data);
+                  }}
+                >
+                  Download
+                </button>
+                {prevData.length > 0 && (
+                  <button className="p-1 h-10 bg-red bg-opacity-90 btn btn-ghost rounded text-white mt-6" onClick={() => handleUndo()}>
+                    Undo
+                  </button>
+                )}
               </div>
-            </>
-          )}
-        </Panel>
+
+              {!filters.length > 0 && (
+                <div className="p-4 hyphens-auto text-md ">Click on a header to add filters, convert data elements and expand values</div>
+              )}
+              {filters.map((filter, i) => {
+                return (
+                  <>
+                    <table className="flex table flex-col my-1" key={"filter" + i}>
+                      <thead>
+                        <tr>
+                          <th>Smart Filters:</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <button className="self-end bg-red bg-opacity-90 px-1  text-white rounded border" onClick={() => clearFilter(filter)}>
+                              Clear
+                            </button>
+                            {
+                              <div className="flex justify-between p-1 items-center rounded border border-blue-300  ">
+                                <span className="text-md border text-slate-800 border-red bg-white rounded px-1">
+                                  {Array.isArray(filter.field) ? filter.field[0] : filter.field}
+                                </span>
+                                <div className="font-bold text-red">{" | "}</div>
+                                <span>{Array.isArray(filter.field) ? "in" : filter.operation}</span>
+                                <div className="font-bold text-red">{" | "}</div>
+                                <span className="text-sm rounded border border-red">
+                                  {Array.isArray(filter.value) ? filter.value.join(", ") : filter.value}
+                                </span>
+                              </div>
+                            }
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
+      {/* </Panel>
         <PanelResizeHandle>
           <div className="w-screen flex justify-center h-4 bg-slate-200">
             <img className="h-6 z-50 -mt-1" src={upDown} alt="" />
           </div>
-          {/* <div className="h-2 w-5 bg-slate-700"></div> */}
+
         </PanelResizeHandle>
         <Panel defaultSize={sizes[1]}>
           <div>{data && <AggregateBoard groupedData={groupedData} setGroupedData={setGroupedData} data={data} />}</div>
         </Panel>
-      </PanelGroup>
+      </PanelGroup> */}
     </>
   );
 }

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { ResponsiveContainer, ComposedChart, CartesianGrid, YAxis, XAxis, Tooltip, Legend, Bar, Line } from "recharts";
 
-function BarTypeChart({ dataSet, graphSettings, graphArr, layer, categoriesGap }) {
+function BarTypeChart({ dataSet, graphSettings, graphArr, layer }) {
   //   const [barGap, setBarGap] = useState(graphSettings.categoriesGap);
   //   console.log({ layer, dataSet, graphSettings, graphArr });
-  console.log({ categoriesGap });
+  //   console.log({ categoriesGap });
   //   useEffect(() => {
   //     setBarGap(graphSettings.categoriesGap);
   //   }, [graphSettings]);
-  console.log({ categoriesGap });
+  //   console.log({ categoriesGap });
 
   return (
     <div id="graph" className="w-[800px] h-[600px] ">
@@ -44,7 +44,7 @@ function BarTypeChart({ dataSet, graphSettings, graphArr, layer, categoriesGap }
                   return (
                     <Bar
                       key={"bar" + i}
-                      maxBarSize={3000 / categoriesGap}
+                      maxBarSize={3000 / graphSettings.categoriesGap}
                       dataKey={graph.dataKey}
                       fill={layer != "main" && layer != i ? "#00000000" : graph.fill}
                     />

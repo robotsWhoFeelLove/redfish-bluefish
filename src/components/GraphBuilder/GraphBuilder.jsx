@@ -12,14 +12,14 @@ import html2canvas from "html2canvas";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
 
-let blankDatum = {
+export let blankDatum = {
   chartType: "",
   dataKey: "",
   displayName: "",
   fill: "#60a5fa",
 };
 
-let blankGraph = {
+export let blankGraph = {
   chartType: "",
   axisName: "",
   ticks: "true",
@@ -32,18 +32,17 @@ let blankGraph = {
   increment: 0,
 };
 
-function GraphBuilder({ groupedData }) {
+function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, setGraphArr }) {
   //   const [field, setField] = useState("");
-  const [graphSettings, setGraphSettings] = useState(blankGraph);
-  const [graphArr, setGraphArr] = useState([]);
+  //   const [graphSettings, setGraphSettings] = useState(blankGraph);
+  //   const [graphArr, setGraphArr] = useState([]);
   const [prevCharts, setPrevCharts] = useState([]);
   const [showColor, setShowColor] = useState("Data Color");
   const [selectedColor, setSelectedColor] = useState("#60a5fa");
   const [theme, setTheme] = useState("None");
   const [activeTab, setActiveTab] = useState("main");
-  const [graphIndex, setGraphIndex] = useState();
+  const [graphIndex, setGraphIndex] = useState(0);
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [barCategoryGap, setBarCategoryGap] = useState(10);
 
   function handleNew(item) {
     console.log("new " + item);
@@ -51,6 +50,8 @@ function GraphBuilder({ groupedData }) {
     setGraphIndex(graphArr.length);
     setGraphArr((x) => [...x, cloneThing(blankDatum)]);
   }
+
+  console.log({ graphArr });
 
   //   function handleUndo() {
   //     let tempCharts = cloneThing(prevCharts);
@@ -87,46 +88,20 @@ function GraphBuilder({ groupedData }) {
   }
 
   async function handleDownloadImage() {
-    // const element = document.querySelector("#print");
-    // console.log({ element });
     toPng(document.getElementById("graph")).then(function (dataUrl) {
       download(dataUrl, graphSettings.chartName ? graphSettings.chartName : "redFishBlueFishChart" + ".png");
     });
-    // const canvas = await html2canvas(element, { scale: 1 });
-    // toPng(element).then(function (dataUrl) {
-    //   var img = new Image();
-    //   img.src = dataUrl;
-    //   const link = document.createElement("a");
-
-    //   link.href = img;
-    //   link.download = "downloaded-image";
-
-    //   document.body.appendChild(link);
-    //   link.click();
-    //   document.body.removeChild(link);
-    // });
-    // const canvas = await html2canvas(element);
-    // console.log(canvas);
-    // const data = canvas.toDataURL("image/jpg");
-    // const link = document.createElement("a");
-
-    // link.href = data;
-    // link.download = "downloaded-image.jpg";
-
-    // document.body.appendChild(link);
-    // link.click();
-    // document.body.removeChild(link);
   }
 
   return (
     <>
-      <div role="tablist" className="tabs tabs-lifted tabs-sm mt-1  bg-blue-50 w-80">
+      <div role="tablist" className="join  mt-1   w-80">
         <a
-          role="tab"
+          //   role="tab"
           onClick={() => {
             setActiveTab("main");
           }}
-          className={"tab text-xs " + (activeTab === "main" && " tab-active ")}
+          className={"join-item  btn btn-outline  " + (activeTab === "main" && " btn-active ")}
         >
           Main
         </a>
@@ -139,45 +114,54 @@ function GraphBuilder({ groupedData }) {
                 setActiveTab(index);
                 setGraphIndex(index);
               }}
-              className={"tab text-xs " + (activeTab === index && " tab-active ")}
+              className={"join-item  btn btn-outline z-50 " + (activeTab === index && " btn-active ")}
             >
               {graph.chartType + " Layer " + (index + 1)}
             </a>
           );
         })}
       </div>
-      <div className="flex gap-2">
-        <div>{"Active Tab: " + activeTab}</div>
-        <div
-          onClick={() => {
-            handleNew("Bar");
-          }}
-          className="btn btn-ghost bg-blue-400 text-white gap-2"
-        >
-          New Bar
-        </div>
-        <div onClick={() => handleNew("Line")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50">
-          New Line
-        </div>
-
-        <div className="btn btn-ghost bg-blue-400 text-white gap-2 z-50">New Radar</div>
+      <div className="w-screen justify-end flex gap-2 pr-14">
+        {graphArr.filter((el) => el.chartType === "Radar").length === 0 && (
+          <>
+            <div
+              onClick={() => {
+                handleNew("Bar");
+              }}
+              className="btn btn-ghost btn-sm bg-blue-400 text-white gap-2"
+            >
+              New Bar
+            </div>
+            <div onClick={() => handleNew("Line")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50  btn-sm">
+              New Line
+            </div>
+          </>
+        )}
+        {graphArr.filter((el) => el.chartType === "Bar" || el.chartType === "Line").length === 0 && (
+          <div onClick={() => handleNew("Radar")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50 btn-sm">
+            New Radar
+          </div>
+        )}
         {graphArr.length > 0 && (
-          <div onClick={handleDownloadImage} className="btn btn-ghost bg-red text-white">
+          <div onClick={handleDownloadImage} className="btn btn-ghost bg-red text-white btn-sm">
             Download
           </div>
         )}
       </div>
       <div className="flex w-screen h-screen">
         <div id="print" className="printObj w-4/5 flex justify-center">
-          <div className="flex justify-center min-h-content h-[600px] w-[90%]  bg-white pt-28 rounded-xl">
-            {graphArr.length > 0 && (
+          <div className="flex justify-center h-min  w-[90%]  bg-white pt-28 rounded-xl shadow-lg">
+            {graphArr.length > 0 && graphArr.filter((el) => el.chartType == "Bar" || el.chartType == "Line").length > 0 && (
               <BarTypeChart
                 layer={activeTab}
                 graphSettings={graphSettings}
                 dataSet={groupedData}
-                categoriesGap={barCategoryGap}
+                // categoriesGap={barCategoryGap}
                 graphArr={graphArr}
               />
+            )}
+            {graphArr.length > 0 && graphArr.filter((el) => el.chartType == "Radar").length > 0 && (
+              <RadarGraph layer={activeTab} graphSettings={graphSettings} dataSet={groupedData} graphArr={graphArr} />
             )}
           </div>
         </div>
@@ -217,10 +201,12 @@ function GraphBuilder({ groupedData }) {
                   width="250px"
                 />
               </div>
-              <Slider value={graphSettings.width} text="Width" setter={(e) => modifyGraph("width", e)} />
+              {graphArr.filter((el) => el.chartType == "Radar").length === 0 && (
+                <Slider value={graphSettings.width} text="Width" setter={(e) => modifyGraph("width", e)} />
+              )}
               <Slider value={graphSettings.height} text="Height" setter={(e) => modifyGraph("height", e)} />
 
-              {/* {graphArr[graphIndex].chartType === "Bar" && (
+              {graphArr[graphIndex].chartType === "Bar" && (
                 <Slider
                   value={graphSettings.categoriesGap}
                   text="Bar Gap"
@@ -231,8 +217,8 @@ function GraphBuilder({ groupedData }) {
                     // modifyGraph("height", graphSettings.height);
                   }}
                 />
-              )} */}
-              <div className="flex justify-between px-2">
+              )}
+              {/* <div className="flex justify-between px-2">
                 <div>Bar Gap:</div>
                 <div className="flex gap-2">
                   <input
@@ -245,11 +231,11 @@ function GraphBuilder({ groupedData }) {
                   />
                   <div>{barCategoryGap}</div>
                 </div>
-              </div>
+              </div> */}
 
               <div className="flex justify-between px-2">
                 <div>Include Ticks:</div>
-                <input type="checkbox" className="toggle" onChange={(e) => modifyGraph("ticks", e.target.checked)} />
+                <input type="checkbox" defaultChecked={true} className="toggle" onChange={(e) => modifyGraph("ticks", e.target.checked)} />
               </div>
 
               <div className="flex justify-between px-2">

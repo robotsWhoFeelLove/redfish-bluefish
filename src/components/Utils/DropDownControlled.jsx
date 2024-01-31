@@ -8,7 +8,9 @@ function DropDown({ actions, width, setter, selected }) {
 
   //   console.log({ selected });
 
-  useEffect(() => setter(actions[0]), []);
+  useEffect(() => {
+    if (!selected) setter(actions[0]);
+  }, []);
 
   function handleOpen(e) {
     e.preventDefault();
