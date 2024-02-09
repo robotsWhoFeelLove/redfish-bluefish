@@ -6,7 +6,7 @@ function TableBody({ data }) {
           <tr key={"row" + index}>
             {Object.values(row).map((val, j) => {
               return (
-                <td className="font-lato" key={"datum_" + index + "_" + j}>
+                <td className="text-slate-800 text-sm font-lato" key={"datum_" + index + "_" + j}>
                   {val}
                 </td>
               );

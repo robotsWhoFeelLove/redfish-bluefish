@@ -41,7 +41,7 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
   return (
     <div
       className={
-        "w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md " +
+        "shadow-lg w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md " +
         (Object.keys(data[0]).indexOf(item) > Object.keys(data[0]).length / 2 && " -ml-[200px]")
       }
     >
@@ -77,7 +77,7 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
           {Array.isArray(data[0][item]) && (
             <>
               <div className="tooltip tooltip-bottom" data-tip="Create a new row for each item in list.">
-                <button className="border rounded bg-blue-400 text-white p-1" onClick={handleExpand}>
+                <button className="btn btn-outline btn-xs  bg-slate-900 text-white " onClick={handleExpand}>
                   Expand
                 </button>
               </div>
@@ -88,7 +88,7 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
               <div className=" absolute w-36 -right-36 bg-white text-wrap text-red border border-blue-400 rounded p-1">
                 This looks like it contains a list stored as text. Converting to a list will allow more data operations.
               </div>
-              <button className=" p-1 border rounded bg-blue-400 text-white" onClick={handleArrayLike}>
+              <button className="btn btn-outline btn-sm bg-slate-900 text-white" onClick={handleArrayLike}>
                 Convert to List
               </button>
             </div>
@@ -100,11 +100,19 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
           (checkForNumber(data, selectedItem) && ( */}
         <>
           {" "}
-          <div role="tablist" className="tabs tabs-lifted tabs-sm mt-1 bg-blue-50">
-            <a role="tab" onClick={() => setActiveTab("filter")} className={"tab text-xs " + (activeTab === "filter" && " tab-active ")}>
+          <div role="tablist" className="join  mt-1 ">
+            <a
+              role="tab"
+              onClick={() => setActiveTab("filter")}
+              className={" text-sm join-item btn btn-outline btn-sm " + (activeTab === "filter" && "btn-active ")}
+            >
               Smart Filter
             </a>
-            <a role="tab" onClick={() => setActiveTab("split")} className={"tab text-xs " + (activeTab === "split" && " tab-active ")}>
+            <a
+              role="tab"
+              onClick={() => setActiveTab("split")}
+              className={"text-sm join-item btn btn-outline btn-sm " + (activeTab === "split" && " btn-active ")}
+            >
               Split to New Column
             </a>
             {/* <a role="tab" onClick={() => setActiveTab("aggregate")} className={"tab text-xs " + (activeTab === "aggregate" && " tab-active")}>
@@ -129,7 +137,7 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
         onClick={(event) => {
           handleHeaderClick("", event);
         }}
-        className="absolute bg-red bg-opacity-90 text-white border-white top-0 right-0 rounded-full border-2 w-8 h-8 flex items-center justify-center"
+        className="absolute bg-slate-900 text-white border-white top-0 right-0 rounded-full border-2 w-5 h-5 shadow-sm flex items-center justify-center"
       >
         <div>X</div>
       </div>

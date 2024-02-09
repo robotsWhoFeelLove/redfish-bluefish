@@ -58,7 +58,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
   }
   return (
     <>
-      <div className="flex w-screen min-h-[100px] max-h-full border-t-4 border-blue-200 bottom-0">
+      <div className={"flex w-screen min-h-[100px] max-h-full border-t-4 border-blue-200 bottom-0 " + (groupedData && " bg-white")}>
         <div className="w-3/4 border-4 overflow-scroll">
           {groupedData && groupedData.length > 0 && (
             <div className="h-14 gradient flex justify-end">
@@ -95,20 +95,24 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
         </div>
 
         <div className=" w-1/4 gradient">
-          <div role="tablist" className="tabs tabs-lifted tabs-sm mt-1 ">
+          <div role="tablist" className="join mt-1 ">
             <a
               role="tab"
               onClick={() => setActiveTab("group")}
-              className={"tab text-xs  " + (activeTab === "group" && " tab-active text-slate-800 ")}
+              className={"text-xs join-item btn btn-outline btn-sm " + (activeTab === "group" && " btn-active text-slate-800 ")}
             >
               Group By:
             </a>
-            <a role="tab" onClick={() => setActiveTab("agg")} className={"tab text-xs  " + (activeTab === "agg" && " tab-active text-slate-800")}>
+            <a
+              role="tab"
+              onClick={() => setActiveTab("agg")}
+              className={" text-xs join-item btn btn-outline btn-sm " + (activeTab === "agg" && " btn-active text-slate-800")}
+            >
               Add Aggregation
             </a>
           </div>
           {activeTab === "group" && (
-            <ul className="text-start pl-2 overflow-y-scroll w-52 border bg-blue-50">
+            <ul className="text-start pl-2 overflow-y-scroll w-52 border bg-white m-2 rounded">
               {/* <li className="text-sm text-slate-500 text-bold">Group By:</li> */}
               {data &&
                 data[0] &&
@@ -153,7 +157,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
                 </div>
                 {aggOp && (
                   <div className="flex m-4 items-center  text-xs justify-center gap-2 ">
-                    <div className="border-2 rounded p-1 bg-red text-center border-blue-200">
+                    <div className="border-2 rounded p-1 text-slate-900 text-center border-blue-200">
                       <div>{aggOp.includes("Percent") ? "Percent" : aggOp}</div>
                       <div className="px-4">{" of "}</div>
                       <div>{header}</div>
@@ -177,7 +181,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
                                   handleAggregation(true);
                                 }
                               }}
-                              className="border bg-red p-1 rounded text-white h-6"
+                              className="btn btn-ghost btn-sm  bg-red p-1  text-white h-6"
                             >
                               Add
                             </button>
@@ -191,7 +195,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
                       </>
                     )}
                     {!aggOp.includes("Percent") && (
-                      <button onClick={handleAggregation} className="border bg-red p-1 rounded text-white h-6">
+                      <button onClick={handleAggregation} className="btn btn-ghost btn-sm p-1 bg-red rounded text-white h-6">
                         Add
                       </button>
                     )}
@@ -208,8 +212,8 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
                 .map((agg, j) => {
                   return (
                     <>
-                      <div key={"agg" + j} className="flex justify-between items-center h-10 p-4 border rounded m-2 bg-blue-500">
-                        <div>{`${agg.operation}   ${agg.field}`}</div>
+                      <div key={"agg" + j} className="flex justify-between items-center h-10 border rounded m-2 btn btn-sm btn-outline">
+                        <div className="border rounded p-1 border-blue-300">{`${agg.operation}   ${agg.field}`}</div>
                         <button onClick={() => handleClearAggregation(agg)} className="border bg-red p-1 rounded text-white h-6 text-xs">
                           Clear
                         </button>

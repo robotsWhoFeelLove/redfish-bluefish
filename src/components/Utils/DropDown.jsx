@@ -16,20 +16,20 @@ function DropDown({ actions, width, setter, defaultItem }) {
   }
 
   return (
-    <div style={{ width: width }} className="flex flex-col cursor-pointer text-blue-500">
+    <div style={{ width: width }} className="flex flex-col cursor-pointer text-slate-900">
       <div ref={ref} onClick={() => setIsOpen((x) => !x)}>
-        <div className="text-sm mx-2  border border-blue-300 rounded flex justify-end">
-          <span className="p-2 border-l rounded-l w-full text-center bg-blue-50">{selected}</span>
+        <div className="text-sm  mx-2  border rounded flex justify-end">
+          <span className="p-2 border border-slate-900 font-bold rounded-l w-full text-center ">{selected}</span>
           {!isOpen && (
-            <span onClick={(e) => handleOpen(e)} className="p-2 border-l bg-blue-400 text-white">
+            <span onClick={(e) => handleOpen(e)} className="p-2 border-l bg-slate-900 text-white">
               &#x2228;
             </span>
           )}
-          {isOpen && <span className="p-2 border-l bg-blue-400 text-white">^</span>}
+          {isOpen && <span className="p-2 border-l bg-slate-900 text-white">^</span>}
         </div>
       </div>
       {isOpen && (
-        <div className="p-2 mt-10 ml-4 bg-white border absolute ">
+        <div className="p-2 mt-10 ml-4 bg-white border-slate-900 border absolute ">
           {actions.map((action) => (
             <div
               key={action + "action"}
@@ -38,7 +38,11 @@ function DropDown({ actions, width, setter, defaultItem }) {
                 setIsOpen((x) => !x);
                 setter(action);
               }}
-              className={"hover:bg-slate-300  " + (action == selected && " text-blue-400 ") + (action != selected && " text-slate-400")}
+              className={
+                "hover:bg-slate-300 text-sm text-slate-900 " +
+                (action == selected && " border border-slate-900 ") +
+                (action != selected && " text-slate-400")
+              }
             >
               {action}
             </div>

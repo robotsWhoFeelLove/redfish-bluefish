@@ -10,6 +10,7 @@ import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import AggregateBoard from "./components/AggregationBoard/AggregateBoard";
 import upDown from "./assets/UpDown.svg";
 import { useLocalStorage } from "./components/Utils/useStorage";
+import Footer from "./components/Footer";
 
 function App() {
   const [data, setData] = useLocalStorage("data", "");
@@ -112,6 +113,7 @@ function App() {
           setGraphArr={setGraphArr}
         />
       )}
+      <Footer></Footer>
     </>
   );
 }

@@ -87,20 +87,20 @@ function FilterTab({ checkedVals, header, setFilters, handleHeaderClick, data })
         {/* {checkedVals.length && ( */}
         {checkedVals.length > 0 && (
           <>
-            <h3 className="text-slate-500 mt-4 pl-4 text-bold text-xs">Filter by Selected:</h3>
+            <h3 className="text-slate-900 mt-4 pl-4 text-bold text-xs">Filter by Selected:</h3>
             <div className="flex wrap items-center justify-around h-full">
-              <div className="text-center text-sm w-24 text-slate-600 text-wrap border border-blue-300 bg-blue-50 rounded ml-2">{header}</div>
+              <div className="btn btn-outline text-center text-sm w-24 text-white text-wrap border  bg-slate-900 ml-2">{header}</div>
               <DropDown actions={Array.isArray(data[0][header]) ? arraylike : stringlike} header={header} setter={setOperation} width="150px" />
               <div className="flex flex-col overflow-y-scroll bg-white">
                 {checkedVals.map((val) => (
-                  <div className="border-2 border-blue-100 p-1 h-8 rounded" key={"span_" + val}>
+                  <div className="border-2 border-slate-300 p-1 h-8 rounded text-slate-900" key={"span_" + val}>
                     {val}
                   </div>
                 ))}
               </div>
             </div>
             <div className="flex justify-center">
-              <button onClick={(e) => handleAddFilter(e)} className="bg-red bg-opacity-90 mt-4 p-2 rounded text-white">
+              <button onClick={(e) => handleAddFilter(e)} className=" mt-4 btn btn-sm btn-ghost text-md text-white bg-red ">
                 Add Filter
               </button>
             </div>

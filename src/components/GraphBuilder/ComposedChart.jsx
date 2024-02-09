@@ -11,7 +11,7 @@ function BarTypeChart({ dataSet, graphSettings, graphArr, layer }) {
   //   console.log({ categoriesGap });
 
   return (
-    <div id="graph" className="w-[800px] h-[600px] ">
+    <div id="graph" className="flex justify-center w-[800px] h-[600px] ">
       <div
         style={{ width: graphSettings.width + "%", height: graphSettings.height + "%", backgroundColor: graphSettings.bgColor }}
         className="h-[500px]  flex flex-col items-center justify-center "

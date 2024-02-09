@@ -11,6 +11,7 @@ import Slider from "../Utils/Slider";
 import html2canvas from "html2canvas";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
+import "./GraphBuilder.css";
 
 export let blankDatum = {
   chartType: "",
@@ -101,7 +102,7 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
           onClick={() => {
             setActiveTab("main");
           }}
-          className={"join-item  btn btn-outline  " + (activeTab === "main" && " btn-active ")}
+          className={"join-item  btn btn-outline btn-sm   " + (activeTab === "main" && " btn-active ")}
         >
           Main
         </a>
@@ -114,43 +115,43 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
                 setActiveTab(index);
                 setGraphIndex(index);
               }}
-              className={"join-item  btn btn-outline z-50 " + (activeTab === index && " btn-active ")}
+              className={"join-item  btn btn-outline btn-sm z-50 " + (activeTab === index && " btn-active ")}
             >
               {graph.chartType + " Layer " + (index + 1)}
             </a>
           );
         })}
       </div>
-      <div className="w-screen justify-end flex gap-2 pr-14">
+      <div className="join w-screen justify-end flex pr-14">
         {graphArr.filter((el) => el.chartType === "Radar").length === 0 && (
           <>
             <div
               onClick={() => {
                 handleNew("Bar");
               }}
-              className="btn btn-ghost btn-sm bg-blue-400 text-white gap-2"
+              className=" btn btn-outline join-item text-black gap-2 btn-sm"
             >
               New Bar
             </div>
-            <div onClick={() => handleNew("Line")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50  btn-sm">
+            <div onClick={() => handleNew("Line")} className=" btn btn-outline join-item text-black gap-2 z-50  btn-sm ">
               New Line
             </div>
           </>
         )}
         {graphArr.filter((el) => el.chartType === "Bar" || el.chartType === "Line").length === 0 && (
-          <div onClick={() => handleNew("Radar")} className="btn btn-ghost bg-blue-400 text-white gap-2 z-50 btn-sm">
+          <div onClick={() => handleNew("Radar")} className=" btn btn-outline join-item text-black gap-2 z-50 btn-sm">
             New Radar
           </div>
         )}
-        {graphArr.length > 0 && (
-          <div onClick={handleDownloadImage} className="btn btn-ghost bg-red text-white btn-sm">
-            Download
-          </div>
-        )}
       </div>
-      <div className="flex w-screen h-screen">
-        <div id="print" className="printObj w-4/5 flex justify-center">
-          <div className="flex justify-center h-min  w-[90%]  bg-white pt-28 rounded-xl shadow-lg">
+      {graphArr.length > 0 && (
+        <div onClick={handleDownloadImage} className="btn btn-ghost bg-red text-white ">
+          Download
+        </div>
+      )}
+      <div className="flex w-screen min-h-fit border-b-4">
+        <div id="print" className="printObj w-4/5 flex  justify-center">
+          <div className="flex justify-center h-min  w-[90%] mb-4 bg-white pt-28 rounded-xl shadow-lg">
             {graphArr.length > 0 && graphArr.filter((el) => el.chartType == "Bar" || el.chartType == "Line").length > 0 && (
               <BarTypeChart
                 layer={activeTab}

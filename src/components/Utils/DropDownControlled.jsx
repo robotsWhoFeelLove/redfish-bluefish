@@ -20,16 +20,16 @@ function DropDown({ actions, width, setter, selected }) {
   }
 
   return (
-    <div style={{ width: width }} className="flex flex-col cursor-pointer text-blue-500 ">
+    <div style={{ width: width }} className="flex flex-col cursor-pointer text-slate-900 w-14">
       <div ref={ref} onClick={() => setIsOpen((x) => !x)}>
-        <div className="text-sm mx-2  border border-blue-300 rounded flex justify-end shadow-lg">
-          <span className="p-2 border-l rounded-l w-full text-center bg-blue-50">{selected}</span>
+        <div className="text-sm mx-2  border border-slate-900 rounded flex justify-end shadow-lg">
+          <span className="p-2 border-l rounded-l w-full text-center bg-white hyphens-auto">{selected}</span>
           {!isOpen && (
-            <span onClick={(e) => handleOpen(e)} className="p-2 border-l bg-blue-400 text-white">
+            <span onClick={(e) => handleOpen(e)} className="p-2 border-l bg-slate-900 text-white">
               &#x2228;
             </span>
           )}
-          {isOpen && <span className="p-2 border-l bg-blue-400 text-white">^</span>}
+          {isOpen && <span className="p-2 border-l bg-slate-900 text-white">^</span>}
         </div>
       </div>
       {isOpen && (

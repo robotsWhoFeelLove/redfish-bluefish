@@ -116,9 +116,7 @@ of Simple CSS Waves*/}
       </div>
       {/*Header ends*/}
       {/*Content starts*/}
-      <div className="content flex-class">
-        <p>Ian Hrydziuszko|&nbsp; &#169; {new Date().getFullYear()} </p>
-      </div>
+
       {/*Content ends*/}
     </>
   );

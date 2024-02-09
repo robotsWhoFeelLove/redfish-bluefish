@@ -8,7 +8,7 @@ function Slider({ setter, max, value, text }) {
           min={0}
           max={max ? max.toString() : "100"}
           value={value}
-          className="range range-info w-36"
+          className="range  w-36"
           onChange={(e) => setter(e.target.value)}
         />
         <div>{value + "%"}</div>

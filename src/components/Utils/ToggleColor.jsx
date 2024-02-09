@@ -1,7 +1,7 @@
 function ToggleColor({ item, setter, showColor }) {
   return (
     <div
-      className={"btn btn-ghost text-white w-20 bg-blue-400 " + (showColor === item && "outline outline-3 outline-red ")}
+      className={"btn btn-outline btn-sm text-slate-900 w-20  " + (showColor === item && "btn-active")}
       // style={{ backgroundColor: datumSettings.fill }}
       onClick={() => {
         showColor === item ? setter("color") : setter(item);
