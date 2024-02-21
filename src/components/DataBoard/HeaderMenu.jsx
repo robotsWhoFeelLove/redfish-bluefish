@@ -3,7 +3,7 @@ import { getUniqueVals, convertToArray, expandNested, cloneThing, checkForNumber
 import FilterTab from "./FilterTab";
 import SplitTab from "./SplitTab copy";
 
-function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, setFilters }) {
+function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, setFilters, sizes }) {
   const [checkedVals, setCheckedVals] = useState([]);
   const [activeTab, setActiveTab] = useState("filter");
 
@@ -40,8 +40,9 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
 
   return (
     <div
+      style={{ height: `${sizes[0] - 15}vh`, maxHeight: "400px" }}
       className={
-        "shadow-lg w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md " +
+        "overflow-y-scroll shadow-lg w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md " +
         (Object.keys(data[0]).indexOf(item) > Object.keys(data[0]).length / 2 && " -ml-[200px]")
       }
     >
@@ -108,13 +109,15 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
             >
               Smart Filter
             </a>
-            <a
-              role="tab"
-              onClick={() => setActiveTab("split")}
-              className={"text-sm join-item btn btn-outline btn-sm " + (activeTab === "split" && " btn-active ")}
-            >
-              Split to New Column
-            </a>
+            {arrayTest(item) && (
+              <a
+                role="tab"
+                onClick={() => setActiveTab("split")}
+                className={"text-sm join-item btn btn-outline btn-sm " + (activeTab === "split" && " btn-active ")}
+              >
+                Split to New Column
+              </a>
+            )}
             {/* <a role="tab" onClick={() => setActiveTab("aggregate")} className={"tab text-xs " + (activeTab === "aggregate" && " tab-active")}>
                 Aggregate
               </a> */}

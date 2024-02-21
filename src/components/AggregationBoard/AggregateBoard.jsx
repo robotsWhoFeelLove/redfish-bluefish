@@ -59,7 +59,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
   return (
     <>
       <div className={"flex w-screen min-h-[100px] max-h-full border-t-4 border-blue-200 bottom-0 " + (groupedData && " bg-white")}>
-        <div className="w-3/4 border-4 overflow-scroll">
+        <div className="grow border-4 overflow-scroll">
           {groupedData && groupedData.length > 0 && (
             <div className="h-14 gradient flex justify-end">
               <button
@@ -94,7 +94,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
           )}
         </div>
 
-        <div className=" w-1/4 gradient">
+        <div className=" max-w-[250px]  gradient">
           <div role="tablist" className="join mt-1 ">
             <a
               role="tab"
@@ -144,16 +144,16 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
             </ul>
           )}
           {activeTab === "agg" && (
-            <div className="text-start px-3 ">
+            <div className="text-start px-3 z-50">
               <>
                 {/* <div className="text-sm text-slate-500 text-bold">Aggregation:</div> */}
-                <div className="flex mt-4 items-center ">
-                  <div className="w-28 text-sm text-white text-bold">Field: </div>{" "}
-                  <DropDown actions={Object.keys(data[0])} width="200px" setter={setHeader} />
+                <div className="flex mt-4 items-center z-50">
+                  <div className="w-28 text-sm text-white text-bold z-50">Field: </div>{" "}
+                  <DropDown actions={Object.keys(data[0])} width="200px z-50" setter={setHeader} />
                 </div>
                 <div className="flex mt-2 items-center ">
                   <div className="w-28 text-sm text-whitetext-bold">Aggregation: </div>{" "}
-                  <DropDown actions={Object.keys(aggregators)} width="200px" setter={setAggOp} />
+                  <DropDown actions={Object.keys(aggregators)} width="200px z-50" setter={setAggOp} />
                 </div>
                 {aggOp && (
                   <div className="flex m-4 items-center  text-xs justify-center gap-2 ">

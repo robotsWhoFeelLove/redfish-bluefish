@@ -18,9 +18,10 @@ function convertToArray(data, field, separator = ",") {
   return data.map((row) => {
     if (
       separator === "|" ||
-      Array.from(row[field]).filter((el) => {
-        return el === "|";
-      }).length > 0
+      (row[field] &&
+        Array.from(row[field]).filter((el) => {
+          return el === "|";
+        }).length > 0)
     ) {
       separator = "|";
     }
@@ -32,7 +33,12 @@ function convertToArray(data, field, separator = ",") {
     ) {
       separator = "\n";
     }
-    row[field] = row[field].split(separator);
+    // console.log(row[field]);
+    if (row[field] === undefined) {
+      row[field] = [];
+    } else {
+      row[field] = row[field].split(separator);
+    }
     return row;
   });
 }

@@ -24,12 +24,14 @@ function NavBar({ currentScreen, setCurrentScreen, isAgg }) {
           >
             Graph Builder
           </div>
-          <div
-            onClick={() => setCurrentScreen("data")}
-            className={"text-lg rounded-l-none  btn btn-outline btn-sm join-item" + (currentScreen === "data" && " btn-active")}
-          >
-            Data Board
-          </div>
+          {isAgg && (
+            <div
+              onClick={() => setCurrentScreen("data")}
+              className={"text-lg rounded-l-none  btn btn-outline btn-sm join-item" + (currentScreen === "data" && " btn-active")}
+            >
+              Data Board
+            </div>
+          )}
         </div>
       </div>
     </nav>

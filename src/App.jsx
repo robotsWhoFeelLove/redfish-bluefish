@@ -58,7 +58,7 @@ function App() {
       {currentScreen === "previous" && <Begin handler={previousDataHandler} data={data} />}
       {currentScreen === "data" && (
         <>
-          <PanelGroup style={{ height: "100vh" }} onLayout={setSizes} direction="vertical">
+          <PanelGroup style={{ height: "110vh" }} onLayout={setSizes} direction="vertical">
             <Panel defaultSize={sizes[0]}>
               <DataBoard
                 uploadHandler={handleUpload}
@@ -68,6 +68,7 @@ function App() {
                 setGroupedData={setGroupedData}
                 data={data}
                 setData={setData}
+                sizes={sizes}
               />
             </Panel>
             <PanelResizeHandle>
@@ -77,14 +78,7 @@ function App() {
                   <div className="w-3 h-[2px] bg-slate-400"></div>
                   <div className="w-3 h-[2px] bg-slate-400"></div>
                 </div>
-                {/* <img className="h-6 z-50 mt-0" src={upDown} alt="" />
-                <div className="flex flex-col gap-[2px]">
-                  <div className="w-3 h-[2px] bg-slate-400"></div>
-                  <div className="w-3 h-[2px] bg-slate-400"></div>
-                  <div className="w-3 h-[2px] bg-slate-400"></div>
-                </div> */}
               </div>
-              {/* <div className="h-2 w-5 bg-slate-700"></div> */}
             </PanelResizeHandle>
             <Panel defaultSize={sizes[1]}>
               <div>

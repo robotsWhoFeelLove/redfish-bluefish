@@ -12,13 +12,13 @@ import upDown from "../../assets/UpDown.svg";
 import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
 
-export default function DataBoard({ data, setData, groupedData, setGroupedData, uploadHandler, unfilteredData, setUnfilteredData }) {
+export default function DataBoard({ data, setData, groupedData, setGroupedData, uploadHandler, unfilteredData, setUnfilteredData, sizes }) {
   // const [data, setData] = useState("");
   const [prevData, setPrevData] = useState([]);
   const [selectedItem, setSelectedItem] = useState("");
   const [filters, setFilters] = useState([]);
   const [height, setHeight] = useState(400);
-  const [sizes, setSizes] = useState([50, 50]);
+  // const [sizes, setSizes] = useState([80, 20]);
   // const [unfilteredData, setUnfilteredData] = useState();
   const ref = useDetectClickOutside({ onTriggered: () => setSelectedItem("") });
 
@@ -134,7 +134,7 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
       {data && (
         <>
           <div className="flex w-screen max-h-full min-h-[150px]  px-2 backdrop">
-            <div className=" w-[80%] overflow-scroll bg-white py-2 rounded-lg">
+            <div className=" w-[100%]  overflow-scroll bg-white py-2 rounded-lg">
               <table className="table table-pin-rows table-xs top-0 ">
                 <thead>
                   <tr className="text-blue-400 ">
@@ -158,6 +158,7 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
                                 item={item}
                                 changeData={changeData}
                                 handleHeaderClick={handleHeaderClick}
+                                sizes={sizes}
                               />
                             )}
                           </th>
@@ -169,7 +170,16 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
                 <TableBody data={data} />
               </table>
             </div>
-            <div className="min-w-[200px] w-1/5 min-h-[450px] right-0  p-1 bg-white border-l-blue-300 border-l-4">
+
+            {/* <div className="w-4 flex flex-col h-[100%] justify-center items-center  bg-slate-200 border border-slate-400">
+              <div className="flex w-4 h-4 gap-[2px]">
+                <div className="h-3 w-[2px] bg-slate-400"></div>
+                <div className="h-3 w-[2px] bg-slate-400"></div>
+                <div className="h-3 w-[2px] bg-slate-400"></div>
+              </div>
+            </div> */}
+
+            <div className="min-w-[200px] max-w-[250px] right-0  p-1 bg-white border-l-blue-300 border-l-4">
               <div className="flex gap-2">
                 <button
                   className="p-1 btn btn-ghost h-10 border bg-red bg-opacity-90 rounded text-white "
@@ -228,17 +238,6 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
           </div>
         </>
       )}
-      {/* </Panel>
-        <PanelResizeHandle>
-          <div className="w-screen flex justify-center h-4 bg-slate-200">
-            <img className="h-6 z-50 -mt-1" src={upDown} alt="" />
-          </div>
-
-        </PanelResizeHandle>
-        <Panel defaultSize={sizes[1]}>
-          <div>{data && <AggregateBoard groupedData={groupedData} setGroupedData={setGroupedData} data={data} />}</div>
-        </Panel>
-      </PanelGroup> */}
     </>
   );
 }
