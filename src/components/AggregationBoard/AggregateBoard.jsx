@@ -5,6 +5,7 @@ import DropDown from "../Utils/DropDown";
 import { handleDownload } from "../Utils/Download";
 import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { getNumFields } from "../functions";
 
 function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations, groupedData, setGroupedData, checkedGroups, setCheckedGroups }) {
   // const [checkedGroups, setCheckedGroups] = useState([]);
@@ -63,7 +64,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
           {groupedData && groupedData.length > 0 && (
             <div className="h-14 gradient flex justify-end">
               <button
-                className="p-2 bg-red btn btn-ghost rounded text-white m-1 self-end"
+                className="p-2 bg-red btn btn-ghost btn-sm rounded text-white m-1 self-end"
                 onClick={() => {
                   handleDownload(groupedData);
                 }}
@@ -149,7 +150,7 @@ function AggregateBoard({ data, handleHeaderClick, aggregations, setAggregations
                 {/* <div className="text-sm text-slate-500 text-bold">Aggregation:</div> */}
                 <div className="flex mt-4 items-center z-50">
                   <div className="w-28 text-sm text-white text-bold z-50">Field: </div>{" "}
-                  <DropDown actions={Object.keys(data[0])} width="200px z-50" setter={setHeader} />
+                  <DropDown actions={getNumFields(data)} width="200px z-50" setter={setHeader} />
                 </div>
                 <div className="flex mt-2 items-center ">
                   <div className="w-28 text-sm text-whitetext-bold">Aggregation: </div>{" "}

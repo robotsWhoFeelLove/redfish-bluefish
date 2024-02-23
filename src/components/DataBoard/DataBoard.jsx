@@ -35,19 +35,19 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
     }
   }
 
-  let testData = [
-    { field1: ["red", "blue"], field2: "car" },
-    { field1: "blue", field2: "truck" },
-    { field1: "green", field2: "motorcycle" },
-  ];
+  // let testData = [
+  //   { field1: ["red", "blue"], field2: "car" },
+  //   { field1: "blue", field2: "truck" },
+  //   { field1: "green", field2: "motorcycle" },
+  // ];
 
-  let filterArr = [
-    // { field: "field1", operation: "===", value: "green" },
-    { field: "field1", operation: "includes", value: "blue" },
-    // { field: "field2", operation: "===", value: "truck" },
-  ];
+  // let filterArr = [
+  //   // { field: "field1", operation: "===", value: "green" },
+  //   { field: "field1", operation: "includes", value: "blue" },
+  //   // { field: "field2", operation: "===", value: "truck" },
+  // ];
 
-  filterDynamic(testData, filterArr);
+  // filterDynamic(testData, filterArr);
 
   useEffect(() => {
     runFilters(filters);
@@ -70,13 +70,13 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
     setData(newData);
   }
 
-  useEffect(() => {
-    console.log({ prevData });
-  }, [prevData]);
+  // useEffect(() => {
+  //   console.log({ prevData });
+  // }, [prevData]);
 
-  useEffect(() => {
-    console.log({ data });
-  }, [data]);
+  // useEffect(() => {
+  //   console.log({ data });
+  // }, [data]);
 
   function handleHeaderClick(el, event) {
     if (event) {
@@ -85,19 +85,19 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
     setSelectedItem(el);
   }
 
-  function handleExpand() {
-    let tempData = [...data];
-    tempData = expandNested(tempData, selectedItem);
-    console.log({ tempData });
-    changeData(tempData);
-  }
+  // function handleExpand() {
+  //   let tempData = [...data];
+  //   tempData = expandNested(tempData, selectedItem);
+  //   console.log({ tempData });
+  //   changeData(tempData);
+  // }
 
-  function handleArrayLike() {
-    let tempData = [...data];
-    tempData = convertToArray(tempData, selectedItem);
+  // function handleArrayLike() {
+  //   let tempData = [...data];
+  //   tempData = convertToArray(tempData, selectedItem);
 
-    changeData(tempData);
-  }
+  //   changeData(tempData);
+  // }
 
   function handleUndo() {
     setSelectedItem("");
@@ -117,15 +117,15 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
     setFilters([]);
   }
 
-  function arrayTest(item) {
-    let test = false;
-    data.map((row) => {
-      if (Array.isArray(row[item])) return;
-      if (typeof row[item] === "number") return;
-      if (row[item]) if (row[item].includes(",") || row[item].includes("|") || row[item].includes("\n")) test = true;
-    });
-    return test;
-  }
+  // function arrayTest(item) {
+  //   let test = false;
+  //   data.map((row) => {
+  //     if (Array.isArray(row[item])) return;
+  //     if (typeof row[item] === "number") return;
+  //     if (row[item]) if (row[item].includes(",") || row[item].includes("|") || row[item].includes("\n")) test = true;
+  //   });
+  //   return test;
+  // }
 
   return (
     <>
@@ -182,7 +182,7 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
             <div className="min-w-[200px] max-w-[250px] right-0  p-1 bg-white border-l-blue-300 border-l-4">
               <div className="flex gap-2">
                 <button
-                  className="p-1 btn btn-ghost h-10 border bg-red bg-opacity-90 rounded text-white "
+                  className="p-1 btn btn-ghost btn-sm h-10 border  bg-red bg-opacity-90 rounded text-white "
                   onClick={() => {
                     handleDownload(data);
                   }}

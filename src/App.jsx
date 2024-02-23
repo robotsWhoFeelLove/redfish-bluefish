@@ -8,7 +8,7 @@ import NavBar from "./components/NavBar";
 import { blankGraph } from "./components/GraphBuilder/GraphBuilder";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import AggregateBoard from "./components/AggregationBoard/AggregateBoard";
-import upDown from "./assets/UpDown.svg";
+// import upDown from "./assets/UpDown.svg";
 import { useLocalStorage } from "./components/Utils/useStorage";
 import Footer from "./components/Footer";
 
@@ -44,10 +44,8 @@ function App() {
   }
 
   // useEffect(() => {
-  //   if (data !== "") {
-  //     setCurrentScreen("previous");
-  //   }
-  // });
+  //   console.log(numFields(data));
+  // }, [data]);
 
   return (
     <>

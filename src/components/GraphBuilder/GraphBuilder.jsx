@@ -12,6 +12,7 @@ import html2canvas from "html2canvas";
 import { toPng } from "html-to-image";
 import download from "downloadjs";
 import "./GraphBuilder.css";
+import { getNumFields } from "../functions";
 
 export let blankDatum = {
   chartType: "",
@@ -186,7 +187,7 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
                 <div>Set Aggregation field:</div>
                 <DropDownControlled
                   selected={graphArr[graphIndex].dataKey}
-                  actions={Object.keys(groupedData[0])}
+                  actions={getNumFields(groupedData)}
                   setter={(item) => {
                     modifyDatum("dataKey", item);
                   }}

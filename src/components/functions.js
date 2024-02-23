@@ -1,3 +1,14 @@
+function getNumFields(arr) {
+  return Object.keys(arr[0]).filter((key) => {
+    console.log({ key });
+    let test = true;
+    arr.map((line) => {
+      if (isNaN(line[key])) test = false;
+    });
+    return test;
+  });
+}
+
 function splitOut(arr, filterArr, field, newField = field + "_copy") {
   let tempData = [];
   arr.map((datum) => {
@@ -388,4 +399,5 @@ export {
   isNullObject,
   convertToArray,
   filterDynamic,
+  getNumFields,
 };
