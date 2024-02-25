@@ -1,0 +1,38 @@
+[
+  {
+    "Species": "Walleye",
+    "Lake": "Michigan",
+    "Population in Millions": 94,
+    "Tags": "Fresh Water\nAngler\nEdible\nGame Fish"
+  },
+  {
+    "Species": "Walleye",
+    "Lake": "Huron",
+    "Population in Millions": 47,
+    "Tags": "Fresh Water\nAngler\nEdible\nGame Fish"
+  },
+  {
+    "Species": "Largemouth",
+    "Lake": "Michigan",
+    "Population in Millions": 34,
+    "Tags": "Fresh Water\nAngler\nEdible\nGame Fish"
+  },
+  {
+    "Species": "Largemouth",
+    "Lake": "Huron",
+    "Population in Millions": 22,
+    "Tags": "Fresh Water\nAngler\nEdible\nGame Fish"
+  },
+  {
+    "Species": "Carp",
+    "Lake": "Michigan",
+    "Population in Millions": 34,
+    "Tags": "Fresh Water\nAngler\nGame Fish"
+  },
+  {
+    "Species": "Carp",
+    "Lake": "Huron",
+    "Population in Millions": 22,
+    "Tags": "Fresh Water\nAngler\nGame Fish"
+  }
+]

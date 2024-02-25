@@ -17,6 +17,14 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
     return test;
   }
 
+  function containsArray(item) {
+    let test = false;
+    data.map((row) => {
+      if (Array.isArray(row[item])) test = true;
+    });
+    return test;
+  }
+
   function handleExpand() {
     let tempData = cloneThing(data);
     tempData = expandNested(tempData, selectedItem);
@@ -40,9 +48,9 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
 
   return (
     <div
-      style={{ height: `${sizes[0] - 15}vh`, maxHeight: "400px" }}
+      // style={{ height: `${sizes[0] - 15}vh`, minHeight: "400px" }}
       className={
-        "overflow-y-scroll shadow-lg w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md " +
+        "overflow-y-scroll shadow-lg w-[400px] h-fill  absolute bg-white border-2 border-blue-300 p-2 rounded text-md z-50" +
         (Object.keys(data[0]).indexOf(item) > Object.keys(data[0]).length / 2 && " -ml-[200px]")
       }
     >
@@ -109,7 +117,7 @@ function HeaderMenu({ data, selectedItem, item, changeData, handleHeaderClick, s
             >
               Smart Filter
             </a>
-            {arrayTest(item) && (
+            {containsArray(item) && (
               <a
                 role="tab"
                 onClick={() => setActiveTab("split")}

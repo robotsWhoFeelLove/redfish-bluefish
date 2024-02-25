@@ -29,7 +29,7 @@ function DropDown({ actions, width, setter, defaultItem }) {
         </div>
       </div>
       {isOpen && (
-        <div className="p-2 mt-10 ml-4 bg-white border-slate-900 border absolute ">
+        <div className="p-2 mt-10 ml-4 bg-white border-slate-900 border absolute overflow-y-scroll">
           {actions.map((action) => (
             <div
               key={action + "action"}
@@ -39,7 +39,7 @@ function DropDown({ actions, width, setter, defaultItem }) {
                 setter(action);
               }}
               className={
-                "hover:bg-slate-300 text-sm text-slate-900 " +
+                "hover:bg-slate-300 text-sm text-slate-900 bg-white " +
                 (action == selected && " border border-slate-900 ") +
                 (action != selected && " text-slate-400")
               }

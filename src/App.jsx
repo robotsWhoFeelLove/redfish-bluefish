@@ -21,7 +21,7 @@ function App() {
   const [graphArr, setGraphArr] = useLocalStorage("graphArr", []);
   const [checkedGroups, setCheckedGroups] = useLocalStorage("checkedGroups", []);
   const [aggregations, setAggregations] = useLocalStorage("aggregations", []);
-  const [sizes, setSizes] = useState([50, 50]);
+  const [sizes, setSizes] = useState([40, 60]);
 
   function handleUpload(event) {
     uploadHandler(event, setData, setUnfilteredData);
@@ -56,7 +56,7 @@ function App() {
       {currentScreen === "previous" && <Begin handler={previousDataHandler} data={data} />}
       {currentScreen === "data" && (
         <>
-          <PanelGroup style={{ height: "110vh" }} onLayout={setSizes} direction="vertical">
+          <PanelGroup style={{ height: "180vh" }} onLayout={setSizes} direction="vertical">
             <Panel defaultSize={sizes[0]}>
               <DataBoard
                 uploadHandler={handleUpload}

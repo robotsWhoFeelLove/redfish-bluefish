@@ -176,11 +176,11 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
               </button>
             </div>
           )} */}
-          {prevCharts.length === 0 && (
+          {/* {prevCharts.length === 0 && (
             <div className="tooltip tooltip-bottom" data-tip="Start making charts below. You can always undo any mistakes">
               <button className="bg-slate-300 text-white btn btn-ghost disabled">Undo</button>
             </div>
-          )}
+          )} */}
           {graphArr.length > 0 && (
             <div className="flex flex-col gap-2 mr-8">
               <div className="flex justify-between px-2 z-40">
@@ -191,7 +191,7 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
                   setter={(item) => {
                     modifyDatum("dataKey", item);
                   }}
-                  width="250px"
+                  width="200px"
                 />
               </div>
               <div className="flex justify-between px-2 z-30">
@@ -200,7 +200,7 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
                   selected={graphSettings.axisName}
                   actions={["", ...Object.keys(groupedData[0])]}
                   setter={(item) => modifyGraph("axisName", item)}
-                  width="250px"
+                  width="200px"
                 />
               </div>
               {graphArr.filter((el) => el.chartType == "Radar").length === 0 && (
@@ -243,6 +243,7 @@ function GraphBuilder({ groupedData, graphSettings, setGraphSettings, graphArr, 
               <div className="flex justify-between px-2">
                 <div>Set Chart Title:</div>
                 <input
+                  className="w-[200px]"
                   value={graphSettings.chartName}
                   onChange={(e) => {
                     modifyGraph("chartName", e.target.value);

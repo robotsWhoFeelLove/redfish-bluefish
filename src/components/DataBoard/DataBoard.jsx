@@ -8,9 +8,9 @@ import logo from "../../assets/fishTwo.svg";
 import Begin from "../Begin/Begin";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import upDown from "../../assets/UpDown.svg";
-
 import "../Navbar.css";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import Information from "../Information/Information";
 
 export default function DataBoard({ data, setData, groupedData, setGroupedData, uploadHandler, unfilteredData, setUnfilteredData, sizes }) {
   // const [data, setData] = useState("");
@@ -133,11 +133,12 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
         <Panel defaultSize={sizes[0]}> */}
       {data && (
         <>
-          <div className="flex w-screen max-h-full min-h-[150px]  px-2 backdrop">
+          <div className="flex w-screen max-h-full min-h-fit  px-2 backdrop">
+            <Information />
             <div className=" w-[100%]  overflow-scroll bg-white py-2 rounded-lg">
-              <table className="table table-pin-rows table-xs top-0 ">
+              <table className="table table-pin-rows table-xs top-0 min-h-[500px]">
                 <thead>
-                  <tr className="text-blue-400 ">
+                  <tr className="text-blue-400 cursor-pointer">
                     {data[0] &&
                       Object.keys(data[0]).map((item) => {
                         return (
@@ -189,11 +190,11 @@ export default function DataBoard({ data, setData, groupedData, setGroupedData, 
                 >
                   Download
                 </button>
-                {prevData.length > 0 && (
+                {/* {prevData.length > 0 && (
                   <button className="p-1 h-10 bg-red bg-opacity-90 btn btn-ghost rounded text-white mt-6" onClick={() => handleUndo()}>
                     Undo
                   </button>
-                )}
+                )} */}
               </div>
 
               {!filters.length > 0 && (
